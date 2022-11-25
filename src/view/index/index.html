@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      header {
+        padding: 15px 20px;
+        background-color: rgb(0, 69, 158);
+      }
+
+      .header-container {
+        color: #fff;
+        margin: 0 auto;
+        font-weight: bold;
+        max-width: 1260px;
+      }
+
+      .header-container a {
+        color: #fff;
+      }
+
+      p {
+        font-size: 14pt;
+        padding: 0px;
+      }
+
+      .container {
+        max-width: 1260px;
+        margin: 10px auto;
+      }
+
+      .content {
+        font-weight: bold;
+        margin-top: 100px;
+        text-align: center;
+      }
+
+      a {
+        color: #00459e;
+        text-decoration: none;
+      }
+
+      .options {
+        gap: 100px;
+        display: flex;
+        min-height: 60vh;
+        justify-content: center;
+      }
+
+      .option-box {
+        gap: 15px;
+        display: flex;
+        font-size: 16pt;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .option-image {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        border-radius: 30px;
+        border: 1px solid #00459e;
+      }
+    </style>
+    <title>Painel administrativo</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-container">
+        <a href="/">Loja Facs</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="content">
+        <p>Selecione uma opção</p>
+      </div>
+      <div class="options">
+        <a class="option-box" href="/seller">
+          Vendedor
+          <img
+            class="option-image"
+            src="https://cdn-icons-png.flaticon.com/512/362/362107.png"
+          />
+        </a>
+        <a class="option-box" href="/manager">
+          Gerente
+          <img
+            class="option-image"
+            src="https://cdn-icons-png.flaticon.com/512/4205/4205906.png"
+          />
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
