@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      header {
+        padding: 15px 20px;
+        background-color: rgb(0, 69, 158);
+      }
+
+      a {
+        color: #00459e;
+        text-decoration: none;
+      }
+
+      label {
+        margin-bottom: -10px;
+      }
+
+      input {
+        border: none;
+        padding: 5px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #00459e;
+      }
+
+      input:focus-visible {
+        outline: 0;
+      }
+
+      input:hover {
+        cursor: text;
+      }
+
+      select {
+        border: none;
+        padding: 5px;
+        border-bottom: 2px solid #00459e;
+      }
+
+      select:focus-visible {
+        outline: 0;
+      }
+
+      .header-container {
+        margin: 0 auto;
+        font-weight: bold;
+        max-width: 1260px;
+      }
+
+      .header-container a {
+        color: #fff;
+      }
+
+      .container {
+        max-width: 1260px;
+        margin: 10px auto;
+      }
+
+      .content {
+        gap: 15px;
+        display: flex;
+        font-size: 16pt;
+        max-width: 300px;
+        flex-direction: column;
+      }
+
+      .submit {
+        padding: 5px;
+        width: 100px;
+        color: #fff;
+        cursor: pointer;
+        margin: 0 0 0 auto;
+        border-radius: 15px;
+        border: 1px solid #000;
+        background-color: #00459e;
+      }
+    </style>
+    <title>Realizar venda</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-container">
+        <a href="/">Loja Facs</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <form class="content" id="form">
+        <label for="seller">Nome do vendedor</label>
+        <input
+          class="input name"
+          name="seller"
+          required
+          autocomplete="off"
+          placeholder="Ex.: Maria"
+        />
+
+        <label for="operation-code">Código da operação</label>
+        <input
+          class="input operation-code"
+          name="operation-code"
+          required
+          autocomplete="off"
+          placeholder="Ex.: 1"
+        />
+
+        <label for="shop-id">Identificação da loja</label>
+        <select name="shop-id" class="input shop-id">
+          <option value="1">Bahia</option>
+          <option value="2">São Paulo</option>
+          <option value="3">Rio de Janeiro</option>
+          <option value="4">Minas Gerais</option>
+        </select>
+
+        <label for="sold-date">Data da venda</label>
+        <input
+          class="input sold-date"
+          name="sold-date"
+          type="date"
+          required
+          autocomplete="off"
+          placeholder="Data da venda"
+        />
+
+        <label for="product-value">Valor da venda</label>
+        <input
+          class="input product-value"
+          name="product-value"
+          required
+          autocomplete="off"
+          placeholder="Valor do produto"
+        />
+
+        <button class="submit">Enviar</button>
+      </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      const form = document.querySelector("#form");
+
+      const name = document.querySelector(".name");
+      const operation_code = document.querySelector(".operation-code");
+      const shop_id = document.querySelector(".shop-id");
+      const product_value = document.querySelector(".product-value");
+      const sold_date = document.querySelector(".sold-date");
+
+      sold_date.max = new Date().toISOString().split("T")[0];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const payload = {
+          name: name.value,
+          operation_code: operation_code.value,
+          shop_id: shop_id.value,
+          product_value: Number(product_value.value),
+          sold_date: sold_date.value,
+        };
+
+        socket.emit("seller data", payload);
+
+        name.value = "";
+        operation_code.value = "";
+        shop_id.value = "";
+        sold_date.value = "";
+        product_value.value = "";
+      });
+    </script>
+  </body>
+</html>
