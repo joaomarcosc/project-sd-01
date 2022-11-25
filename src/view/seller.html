@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Sou vendedor</h1>
+  <form id="form">
+    <input class="input name" required autocomplete="off" placeholder="Seu nome" />
+    <input class="input operation-code" required autocomplete="off" placeholder="Código da operação" />
+    <input class="input shop-id" required autocomplete="off" placeholder="Identificação da loja" />
+    <input class="input sold-date" type="date" required autocomplete="off" placeholder="Data da venda" />
+    <input class="input product-value" required autocomplete="off" placeholder="Valor do produto" />
+
+    <button>Enviar</button>
+  </form>
+
+  <a href="/">Voltar</a>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    const form = document.querySelector("#form")
+
+    const name = document.querySelector(".name")
+    const operation_code = document.querySelector(".operation-code")
+    const shop_id = document.querySelector(".shop-id")
+    const product_value = document.querySelector(".product-value")
+    const sold_date = document.querySelector(".sold-date")
+
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+      const payload = { name: name.value, operation_code: operation_code.value, shop_id: shop_id.value, product_value: Number(product_value.value), sold_date: sold_date.value }
+
+      socket.emit('seller data', payload)
+
+      name.value = ''
+      operation_code.value = ''
+      shop_id.value = ''
+      sold_date.value = ''
+      product_value.value = ''
+    })
+  </script>
+</body>
+
+</html>
