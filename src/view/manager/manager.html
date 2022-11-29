@@ -171,7 +171,7 @@
       </div>
 
       <div>
-        <p id="result"></p>
+        <div id="result"></div>
 
         <p class="no-data" id="no_data"></p>
 
@@ -289,7 +289,7 @@
           no_data.innerHTML = "";
         } else {
           result.innerHTML = "";
-          no_data.innerHTML = `Nenhuma informação encontrada com o nome <strong>${seller_name.value}</strong>.`;
+          no_data.innerHTML = `Nenhuma informação encontrada com o nome "<strong>${seller_name.value}</strong>".`;
         }
       }
 
@@ -310,6 +310,8 @@
       }
 
       function totalSalesIntervalDateShop() {
+        result.innerHTML = "";
+        no_data.innerHTML = "";
         const shop = data.filter((item) => item.shop_id === shop_id.value);
         const filter_date = shop.filter(
           (item) =>
@@ -318,21 +320,29 @@
             item.sold_date.getTime() <= new Date(final_date.value).getTime()
         );
 
-        filter_date.forEach((item) => {
-          const div = document.createElement("div");
-          result.innerHTML = "";
-          div.innerHTML = `
-          <p>Nome: ${item.name}</p>
-          <p>Código de operação: ${item.operation_code}</p>
-          <p>Valor do produto: ${moneyFormat(item.product_value)}</p>
-          <p>Identificação da loja: ${item.shop_id}</p>
-          <p>Data da venda: ${item.sold_date.getDate() + 1}/${
-            item.sold_date.getMonth() + 1
-          }/${item.sold_date.getFullYear()}</p>
-        `;
+        if (filter_date.length >= 1) {
+          filter_date.forEach((item, index) => {
+            const div = document.createElement("div");
+            div.innerHTML = `
+          ${index + 1}ª venda: 
+          <p>Nome: <strong>${item.name}</strong></p>
+          <p>Código de operação: <strong>${item.operation_code}</strong></p>
+          <p>Valor do produto: <strong>${moneyFormat(
+            item.product_value
+          )}</strong></p>
+          <p>Identificação da loja: <strong>${item.shop_id}</strong></p>
+          <p>Data da venda: <strong>${item.sold_date.toLocaleString("pt", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          })}</strong></p>
+          `;
 
-          result.appendChild(div);
-        });
+            result.appendChild(div);
+          });
+        } else {
+          no_data.innerHTML = `<p>A loja ${shop_id.value} não obteve vendas esse período.</p>`;
+        }
       }
 
       const groupBy = function (xs, key) {
