@@ -16,14 +16,17 @@ app.get("/seller", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  console.log("user connect");
-
   socket.on("seller data", (msg) => {
-    socket.broadcast.emit("seller data", msg);
+    if (isNaN(Number(msg.operation_code)) || isNaN(Number(msg.product_value))) {
+      socket.emit("error", "Os dados 'Código da operação', 'Valor da venda' e 'Nome do vendedor' precisam ser números ")
+    } else {
+      socket.emit("success", "Venda cadastrada com sucesso")
+      socket.broadcast.emit("seller data", msg);
+    }
   });
 
   socket.on("disconnect", () => {
-    console.log("user disconnect");
+    console.log("Usuário desconectado");
   });
 });
 

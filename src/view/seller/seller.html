@@ -1,182 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      * {
-        margin: 0px;
-        padding: 0px;
-        font-family: Arial, Helvetica, sans-serif;
-      }
 
-      header {
-        padding: 15px 20px;
-        background-color: rgb(0, 69, 158);
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-      a {
-        color: #00459e;
-        text-decoration: none;
-      }
+    header {
+      padding: 15px 20px;
+      background-color: rgb(0, 69, 158);
+    }
 
-      label {
-        margin-bottom: -10px;
-      }
+    a {
+      color: #00459e;
+      text-decoration: none;
+    }
 
-      input {
-        border: none;
-        padding: 5px;
-        margin-bottom: 10px;
-        border-bottom: 2px solid #00459e;
-      }
+    label {
+      margin-bottom: -10px;
+    }
 
-      input:focus-visible {
-        outline: 0;
-      }
+    input {
+      border: none;
+      padding: 5px;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #00459e;
+    }
 
-      input:hover {
-        cursor: text;
-      }
+    input:focus-visible {
+      outline: 0;
+    }
 
-      select {
-        border: none;
-        padding: 5px;
-        border-bottom: 2px solid #00459e;
-      }
+    input:hover {
+      cursor: text;
+    }
 
-      select:focus-visible {
-        outline: 0;
-      }
+    select {
+      border: none;
+      padding: 5px;
+      border-bottom: 2px solid #00459e;
+    }
 
-      .header-container {
-        margin: 0 auto;
-        font-weight: bold;
-        max-width: 1260px;
-      }
+    select:focus-visible {
+      outline: 0;
+    }
 
-      .header-container a {
-        color: #fff;
-      }
+    .header-container {
+      margin: 0 auto;
+      font-weight: bold;
+      max-width: 1260px;
+    }
 
-      .container {
-        max-width: 1260px;
-        margin: 10px auto;
-      }
+    .header-container a {
+      color: #fff;
+    }
 
-      .content {
-        gap: 15px;
-        display: flex;
-        font-size: 16pt;
-        max-width: 300px;
-        flex-direction: column;
-      }
+    .container {
+      max-width: 1260px;
+      margin: 10px auto;
+    }
 
-      .submit {
-        padding: 5px;
-        width: 100px;
-        color: #fff;
-        cursor: pointer;
-        margin: 0 0 0 auto;
-        border-radius: 15px;
-        border: 1px solid #000;
-        background-color: #00459e;
-      }
-    </style>
-    <title>Realizar venda</title>
-  </head>
+    .content {
+      gap: 15px;
+      display: flex;
+      font-size: 16pt;
+      max-width: 300px;
+      flex-direction: column;
+    }
 
-  <body>
-    <header>
-      <div class="header-container">
-        <a href="/">Loja Facs</a>
-      </div>
-    </header>
+    .submit {
+      padding: 5px;
+      width: 100px;
+      color: #fff;
+      cursor: pointer;
+      margin: 0 0 0 auto;
+      border-radius: 15px;
+      border: 1px solid #000;
+      background-color: #00459e;
+    }
 
-    <div class="container">
-      <form class="content" id="form">
-        <label for="seller">Nome do vendedor</label>
-        <input
-          class="input name"
-          name="seller"
-          required
-          autocomplete="off"
-          placeholder="Ex.: Maria"
-        />
+    .pop-up {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 300px;
+      height: 100px;
+      background-color: rgb(121, 210, 32);
+      border: 2px solid rgb(28, 55, 1);
+      border-radius: 20px;
+      transition: opacity 0.2s;
+      opacity: 0;
+      padding: 10px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+  <title>Realizar venda</title>
+</head>
 
-        <label for="operation-code">Código da operação</label>
-        <input
-          class="input operation-code"
-          name="operation-code"
-          required
-          autocomplete="off"
-          placeholder="Ex.: 1"
-        />
+<body>
+  <div class="pop-up"></div>
 
-        <label for="shop-id">Identificação da loja</label>
-        <select name="shop-id" class="input shop-id">
-          <option value="1">Bahia</option>
-          <option value="2">São Paulo</option>
-          <option value="3">Rio de Janeiro</option>
-          <option value="4">Minas Gerais</option>
-        </select>
-
-        <label for="sold-date">Data da venda</label>
-        <input
-          class="input sold-date"
-          name="sold-date"
-          type="date"
-          required
-          autocomplete="off"
-          placeholder="Data da venda"
-        />
-
-        <label for="product-value">Valor da venda</label>
-        <input
-          class="input product-value"
-          name="product-value"
-          required
-          autocomplete="off"
-          placeholder="Valor do produto"
-        />
-
-        <button class="submit">Enviar</button>
-      </form>
+  <header>
+    <div class="header-container">
+      <a href="/">Loja Facs</a>
     </div>
+  </header>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      const socket = io();
+  <div class="container">
+    <form class="content" id="form">
+      <label for="seller">Nome do vendedor</label>
+      <input class="input name" name="seller" required autocomplete="off" placeholder="Ex.: Maria" />
 
-      const form = document.querySelector("#form");
+      <label for="operation-code">Código da operação</label>
+      <input class="input operation-code" name="operation-code" required autocomplete="off" placeholder="Ex.: 1" />
 
-      const name = document.querySelector(".name");
-      const operation_code = document.querySelector(".operation-code");
-      const shop_id = document.querySelector(".shop-id");
-      const product_value = document.querySelector(".product-value");
-      const sold_date = document.querySelector(".sold-date");
+      <label for="shop-id">Identificação da loja</label>
+      <select name="shop-id" class="input shop-id">
+        <option value="1">Bahia</option>
+        <option value="2">São Paulo</option>
+        <option value="3">Rio de Janeiro</option>
+        <option value="4">Minas Gerais</option>
+      </select>
 
-      sold_date.max = new Date().toISOString().split("T")[0];
+      <label for="sold-date">Data da venda</label>
+      <input class="input sold-date" name="sold-date" type="date" required autocomplete="off"
+        placeholder="Data da venda" />
 
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const payload = {
-          name: name.value,
-          operation_code: operation_code.value,
-          shop_id: shop_id.value,
-          product_value: Number(product_value.value),
-          sold_date: sold_date.value,
-        };
+      <label for="product-value">Valor da venda</label>
+      <input class="input product-value" name="product-value" required autocomplete="off"
+        placeholder="Valor do produto" />
 
-        socket.emit("seller data", payload);
+      <button class="submit">Enviar</button>
+    </form>
+  </div>
 
-        name.value = "";
-        operation_code.value = "";
-        shop_id.value = "1";
-        sold_date.value = "";
-        product_value.value = "";
-      });
-    </script>
-  </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    const form = document.querySelector("#form");
+
+    const name = document.querySelector(".name");
+    const operation_code = document.querySelector(".operation-code");
+    const shop_id = document.querySelector(".shop-id");
+    const product_value = document.querySelector(".product-value");
+    const sold_date = document.querySelector(".sold-date");
+    const pop_up = document.querySelector(".pop-up");
+
+    sold_date.max = new Date().toISOString().split("T")[0];
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const payload = {
+        name: name.value,
+        operation_code: operation_code.value,
+        shop_id: shop_id.value,
+        product_value: Number(product_value.value),
+        sold_date: sold_date.value,
+      };
+
+      socket.emit("seller data", payload);
+
+      name.value = "";
+      operation_code.value = "";
+      shop_id.value = "1";
+      sold_date.value = "";
+      product_value.value = "";
+    });
+
+    socket.on("error", (msg) => {
+      pop_up.style.opacity = 1
+      pop_up.style.backgroundColor = "red"
+      pop_up.style.borderColor = "red"
+      pop_up.innerHTML = msg
+
+      setTimeout(() => {
+        pop_up.style.opacity = 0
+      }, 5000)
+    })
+
+    socket.on("success", (msg) => {
+      pop_up.style.opacity = 1
+      pop_up.innerHTML = msg
+
+      setTimeout(() => {
+        pop_up.style.opacity = 0
+      }, 5000)
+    })
+  </script>
+</body>
+
 </html>
