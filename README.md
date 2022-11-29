@@ -12,7 +12,7 @@ Para funcionamento da aplicação, faz-se necessário possuir o NODE instalado e
 
 #### Execução da aplicação
 
-No diretório do projeto, faça
+No diretório do projeto, faça:
 
 #### `npm`
 
@@ -22,8 +22,12 @@ O 'npm' serve para instalar as dependências utilizadas.
 
 O comando serve para iniciar a aplicação.
 
+#### `localhost:3333`
+
+Acesse o localhost no seu navegador para visualizar o projeto.
+
 ##### Equipe
 
 Gabriel Guimarães Santana - 1272116253
 João Marcos Silva Carvalho - 1272121898
-Luan Cavalcante Dias Rodrigues -
+Luan Cavalcante Dias Rodrigues - 1272122449
