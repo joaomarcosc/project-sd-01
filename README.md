@@ -10,11 +10,11 @@ O vendedor emite uma venda e o gerente obtém os dados mais detalhados sobre.
 
 Para funcionamento da aplicação, faz-se necessário possuir o NODE instalado em sua máquina.
 
-#### Execução da aplicação
+### Execução da aplicação
 
 No diretório do projeto, faça:
 
-#### `npm`
+#### `npm install`
 
 O 'npm' serve para instalar as dependências utilizadas.
 
@@ -26,7 +26,7 @@ O comando serve para iniciar a aplicação.
 
 Acesse o localhost no seu navegador para visualizar o projeto.
 
-##### Equipe
+### Equipe
 
 Gabriel Guimarães Santana - 1272116253
 João Marcos Silva Carvalho - 1272121898
