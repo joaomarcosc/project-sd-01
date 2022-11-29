@@ -1,329 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      * {
-        margin: 0px;
-        padding: 0px;
-        font-family: Arial, Helvetica, sans-serif;
-      }
 
-      header {
-        padding: 15px 20px;
-        background-color: rgb(0, 69, 158);
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-      a {
-        color: #00459e;
-        text-decoration: none;
-      }
+    header {
+      padding: 15px 20px;
+      background-color: rgb(0, 69, 158);
+    }
 
-      label {
-        margin-bottom: -10px;
-      }
+    a {
+      color: #00459e;
+      text-decoration: none;
+    }
 
-      input {
-        border: none;
-        padding: 5px;
-        border-bottom: 2px solid #00459e;
-      }
+    label {
+      margin-bottom: -10px;
+    }
 
-      input:focus-visible {
-        outline: 0;
-      }
+    input {
+      border: none;
+      padding: 5px;
+      border-bottom: 2px solid #00459e;
+    }
 
-      input:hover {
-        cursor: text;
-      }
+    input:focus-visible {
+      outline: 0;
+    }
 
-      select {
-        width: 100%;
-        border: none;
-        padding: 5px;
-        border-bottom: 2px solid #00459e;
-      }
+    input:hover {
+      cursor: text;
+    }
 
-      select:focus-visible {
-        outline: 0;
-      }
+    select {
+      width: 100%;
+      border: none;
+      padding: 5px;
+      border-bottom: 2px solid #00459e;
+    }
 
-      button {
-        border: none;
-        padding: 10px;
-        color: #fff;
-        cursor: pointer;
-        border-radius: 30px;
-        background-color: #00459e;
-      }
+    select:focus-visible {
+      outline: 0;
+    }
 
-      .header-container {
-        margin: 0 auto;
-        font-weight: bold;
-        max-width: 1260px;
-      }
+    button {
+      border: none;
+      padding: 10px;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 30px;
+      background-color: #00459e;
+    }
 
-      .header-container a {
-        color: #fff;
-      }
+    .header-container {
+      margin: 0 auto;
+      font-weight: bold;
+      max-width: 1260px;
+    }
 
-      .container {
-        gap: 40px;
-        display: grid;
-        max-width: 1260px;
-        margin: 10px auto;
-        grid-template-columns: 350px 1fr;
-      }
+    .header-container a {
+      color: #fff;
+    }
 
-      .content {
-        gap: 15px;
-        display: flex;
-        font-size: 16pt;
-        flex-direction: column;
-      }
+    .container {
+      gap: 40px;
+      display: grid;
+      max-width: 1260px;
+      margin: 10px auto;
+      grid-template-columns: 350px 1fr;
+    }
 
-      .input-box {
-        gap: 10px;
-        display: grid;
-        align-items: center;
-        justify-content: center;
-        grid-template-columns: 2fr 1fr;
-      }
+    .content {
+      gap: 15px;
+      display: flex;
+      font-size: 16pt;
+      flex-direction: column;
+    }
 
-      .input-data {
-        gap: 10px;
-        display: grid;
-        grid-template-columns: 2fr 2fr 1fr;
-      }
+    .input-box {
+      gap: 10px;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      grid-template-columns: 2fr 1fr;
+    }
 
-      .submit {
-        margin-top: 30px;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        padding: 10px 5px;
-        border-radius: 30px;
-        background-color: #00459e;
-      }
+    .input-data {
+      gap: 10px;
+      display: grid;
+      grid-template-columns: 2fr 2fr 1fr;
+    }
 
-      .no-data {
-        color: #666;
-        text-align: center;
-      }
-    </style>
-    <title>Visualizar vendas</title>
-  </head>
+    .submit {
+      margin-top: 30px;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      padding: 10px 5px;
+      border-radius: 30px;
+      background-color: #00459e;
+    }
 
-  <body>
-    <header>
-      <div class="header-container">
-        <a href="/">Loja Facs</a>
+    .no-data {
+      color: #666;
+      text-align: center;
+    }
+
+    .pop-up {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 300px;
+      height: 100px;
+      background-color: rgb(121, 210, 32);
+      border: 2px solid rgb(28, 55, 1);
+      border-radius: 20px;
+      transition: opacity 0.2s;
+      opacity: 0;
+      padding: 10px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+  <title>Visualizar vendas</title>
+</head>
+
+<body>
+  <div class="pop-up"></div>
+
+  <header>
+    <div class="header-container">
+      <a href="/">Loja Facs</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="content">
+      <label for="seller">Nome do vendedor</label>
+      <div class="input-box">
+        <input name="seller" class="seller" placeholder="Ex.: Maria" />
+        <button onclick="searchSeller()">Pesquisar</button>
       </div>
-    </header>
 
-    <div class="container">
-      <div class="content">
-        <label for="seller">Nome do vendedor</label>
-        <div class="input-box">
-          <input name="seller" class="seller" placeholder="Ex.: Maria" />
-          <button onclick="searchSeller()">Pesquisar</button>
-        </div>
+      <label for="shop_id">Selecione a loja</label>
+      <div class="input-box">
+        <select name="shop_id" class="shop_id">
+          <option value="1">Bahia</option>
+          <option value="2">São Paulo</option>
+          <option value="3">Rio de Janeiro</option>
+          <option value="4">Minas Gerais</option>
+        </select>
+        <button onclick="totalSalesFromShop()">Pesquisar</button>
+      </div>
 
-        <label for="shop_id">Selecione a loja</label>
-        <div class="input-box">
-          <select name="shop_id" class="shop_id">
-            <option value="1">Bahia</option>
-            <option value="2">São Paulo</option>
-            <option value="3">Rio de Janeiro</option>
-            <option value="4">Minas Gerais</option>
-          </select>
-          <button onclick="totalSalesFromShop()">Pesquisar</button>
-        </div>
+      <div class="input-data">
+        <label for="initial_date">Data inicial</label>
+        <label for="final_date">Data final</label>
+      </div>
 
-        <div class="input-data">
-          <label for="initial_date">Data inicial</label>
-          <label for="final_date">Data final</label>
-        </div>
-
-        <div class="input-data">
-          <input
-            name="initial_date"
-            class="initial_date"
-            placeholder="Data inicial"
-            type="date"
-          />
-          <input
-            name="final_date"
-            class="final_date"
-            placeholder="Data final"
-            type="date"
-          />
-          <button type="submit" onclick="totalSalesIntervalDateShop()">
-            Pesquisar
-          </button>
-        </div>
-
-        <button class="submit" onclick="bestSeller()">
-          Consultar melhor vendedor
+      <div class="input-data">
+        <input name="initial_date" class="initial_date" placeholder="Data inicial" type="date" />
+        <input name="final_date" class="final_date" placeholder="Data final" type="date" />
+        <button type="submit" onclick="totalSalesIntervalDateShop()">
+          Pesquisar
         </button>
       </div>
 
-      <div>
-        <div id="result"></div>
-
-        <p class="no-data" id="no_data"></p>
-
-        <ul id="list"></ul>
-      </div>
+      <button class="submit" onclick="bestSeller()">
+        Consultar melhor vendedor
+      </button>
     </div>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      const socket = io();
+    <div>
+      <div id="result"></div>
 
-      const list = document.getElementById("list");
-      const seller_name = document.querySelector(".seller");
-      const shop_id = document.querySelector(".shop_id");
-      const initial_date = document.querySelector(".initial_date");
-      const final_date = document.querySelector(".final_date");
-      const result = document.querySelector("#result");
-      const no_data = document.querySelector("#no_data");
+      <p class="no-data" id="no_data"></p>
 
-      const data = [
-        {
-          name: "Pedro",
-          operation_code: "123",
-          shop_id: "2",
-          product_value: 6000,
-          sold_date: new Date("2022-07-06"),
-        },
-        {
-          name: "Gabriel",
-          operation_code: "123",
-          shop_id: "3",
-          product_value: 6000,
-          sold_date: new Date("2022-07-06"),
-        },
-        {
-          name: "Paulo",
-          operation_code: "123",
-          shop_id: "1",
-          product_value: 2000,
-          sold_date: new Date("2022-07-06"),
-        },
-        {
-          name: "Joao",
-          operation_code: "123",
-          shop_id: "2",
-          product_value: 2000,
-          sold_date: new Date("2022-07-16"),
-        },
-        {
-          name: "Luan",
-          operation_code: "123",
-          shop_id: "1",
-          product_value: 2000,
-          sold_date: new Date("2022-07-06"),
-        },
-        {
-          name: "Tamires",
-          operation_code: "123",
-          shop_id: "4",
-          product_value: 2000,
-          sold_date: new Date("2017-01-06"),
-        },
-        {
-          name: "Maria",
-          operation_code: "123",
-          shop_id: "3",
-          product_value: 2000,
-          sold_date: new Date("2015-05-08"),
-        },
-        {
-          name: "Cleide",
-          operation_code: "123",
-          shop_id: "3",
-          product_value: 2000,
-          sold_date: new Date("2022-07-06"),
-        },
-        {
-          name: "Priscila",
-          operation_code: "123",
-          shop_id: "2",
-          product_value: 2000,
-          sold_date: new Date("2014-06-06"),
-        },
-        {
-          name: "Xavier",
-          operation_code: "123",
-          shop_id: "3",
-          product_value: 2000,
-          sold_date: new Date("2022-07-06"),
-        },
-        {
-          name: "Xavier",
-          operation_code: "123",
-          shop_id: "1",
-          product_value: 2000,
-          sold_date: new Date("2022-05-12"),
-        },
-      ];
+      <ul id="list"></ul>
+    </div>
+  </div>
 
-      socket.on("seller data", (item) => {
-        data.push(item);
-        alert(item.name);
-      });
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
 
-      function searchSeller() {
-        const seller = data.filter(
-          (item) => item.name === seller_name.value && item
-        );
-        const total = seller.reduce((acc, curr) => acc + curr.product_value, 0);
+    const list = document.getElementById("list");
+    const seller_name = document.querySelector(".seller");
+    const shop_id = document.querySelector(".shop_id");
+    const initial_date = document.querySelector(".initial_date");
+    const final_date = document.querySelector(".final_date");
+    const result = document.querySelector("#result");
+    const no_data = document.querySelector("#no_data");
+    const pop_up = document.querySelector(".pop-up");
 
-        if (seller[0]) {
-          result.innerHTML = `O total de vendas do vendedor <strong>${
-            seller[0].name
+    const data = [
+      {
+        name: "Pedro",
+        operation_code: "123",
+        shop_id: "2",
+        product_value: 6000,
+        sold_date: new Date("2022-07-06"),
+      },
+      {
+        name: "Gabriel",
+        operation_code: "123",
+        shop_id: "3",
+        product_value: 6000,
+        sold_date: new Date("2022-07-06"),
+      },
+      {
+        name: "Paulo",
+        operation_code: "123",
+        shop_id: "1",
+        product_value: 2000,
+        sold_date: new Date("2022-07-06"),
+      },
+      {
+        name: "Joao",
+        operation_code: "123",
+        shop_id: "2",
+        product_value: 2000,
+        sold_date: new Date("2022-07-16"),
+      },
+      {
+        name: "Luan",
+        operation_code: "123",
+        shop_id: "1",
+        product_value: 2000,
+        sold_date: new Date("2022-07-06"),
+      },
+      {
+        name: "Tamires",
+        operation_code: "123",
+        shop_id: "4",
+        product_value: 2000,
+        sold_date: new Date("2017-01-06"),
+      },
+      {
+        name: "Maria",
+        operation_code: "123",
+        shop_id: "3",
+        product_value: 2000,
+        sold_date: new Date("2015-05-08"),
+      },
+      {
+        name: "Cleide",
+        operation_code: "123",
+        shop_id: "3",
+        product_value: 2000,
+        sold_date: new Date("2022-07-06"),
+      },
+      {
+        name: "Priscila",
+        operation_code: "123",
+        shop_id: "2",
+        product_value: 2000,
+        sold_date: new Date("2014-06-06"),
+      },
+      {
+        name: "Xavier",
+        operation_code: "123",
+        shop_id: "3",
+        product_value: 2000,
+        sold_date: new Date("2022-07-06"),
+      },
+      {
+        name: "Xavier",
+        operation_code: "123",
+        shop_id: "1",
+        product_value: 2000,
+        sold_date: new Date("2022-05-12"),
+      },
+    ];
+
+    socket.on("seller data", (item) => {
+      data.push(item);
+      pop_up.style.opacity = 1
+      pop_up.innerHTML = `<p>${item.name} adicionou uma venda</p>`
+
+      setTimeout(() => {
+        pop_up.style.opacity = 0
+      }, 5000)
+    });
+
+    function searchSeller() {
+      const seller = data.filter(
+        (item) => item.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "") === seller_name.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+      );
+      const total = seller.reduce((acc, curr) => acc + curr.product_value, 0);
+
+      if (seller[0]) {
+        result.innerHTML = `O total de vendas do vendedor <strong>${seller[0].name
           }</strong> é de <strong>${moneyFormat(total)}</strong>.`;
-          no_data.innerHTML = "";
-        } else {
-          result.innerHTML = "";
-          no_data.innerHTML = `Nenhuma informação encontrada com o nome "<strong>${seller_name.value}</strong>".`;
-        }
-      }
-
-      function totalSalesFromShop() {
-        const shop = data.filter((item) => item.shop_id === shop_id.value);
-        const total = shop.reduce((acc, curr) => acc + curr.product_value, 0);
-        const quantity = shop.length;
-
-        const renderTextQuantity = quantity === 1 ? "produto" : "produtos";
-
         no_data.innerHTML = "";
-        result.innerHTML = `A loja <strong>${
-          shop[0].shop_id
+      } else {
+        result.innerHTML = "";
+        no_data.innerHTML = `Nenhuma informação encontrada com o nome "<strong>${seller_name.value}</strong>".`;
+      }
+    }
+
+    function totalSalesFromShop() {
+      const shop = data.filter((item) => item.shop_id === shop_id.value);
+      const total = shop.reduce((acc, curr) => acc + curr.product_value, 0);
+      const quantity = shop.length;
+
+      const renderTextQuantity = quantity < 2 ? "produto" : "produtos";
+
+      no_data.innerHTML = "";
+      result.innerHTML = `A loja <strong>${shop[0].shop_id
         }</strong> vendeu ${quantity} ${renderTextQuantity}, totalizando <strong>${total.toLocaleString(
           "pt-BR",
           { style: "currency", currency: "BRL" }
         )}</strong>.`;
-      }
+    }
 
-      function totalSalesIntervalDateShop() {
-        result.innerHTML = "";
-        no_data.innerHTML = "";
-        const shop = data.filter((item) => item.shop_id === shop_id.value);
-        const filter_date = shop.filter(
-          (item) =>
-            item.sold_date.getTime() >=
-              new Date(initial_date.value).getTime() &&
-            item.sold_date.getTime() <= new Date(final_date.value).getTime()
-        );
+    function totalSalesIntervalDateShop() {
+      result.innerHTML = "";
+      no_data.innerHTML = "";
+      const shop = data.filter((item) => item.shop_id === shop_id.value);
+      const filter_date = shop.filter(
+        (item) =>
+          item.sold_date.getTime() >=
+          new Date(initial_date.value).getTime() &&
+          item.sold_date.getTime() <= new Date(final_date.value).getTime()
+      );
 
-        if (filter_date.length >= 1) {
-          filter_date.forEach((item, index) => {
-            const div = document.createElement("div");
-            div.innerHTML = `
+      if (filter_date.length >= 1) {
+        filter_date.forEach((item, index) => {
+          const div = document.createElement("div");
+          div.innerHTML = `
           ${index + 1}ª venda: 
           <p>Nome: <strong>${item.name}</strong></p>
           <p>Código de operação: <strong>${item.operation_code}</strong></p>
@@ -338,65 +354,65 @@
           })}</strong></p>
           `;
 
-            result.appendChild(div);
-          });
-        } else {
-          no_data.innerHTML = `<p>A loja ${shop_id.value} não obteve vendas esse período.</p>`;
-        }
+          result.appendChild(div);
+        });
+      } else {
+        no_data.innerHTML = `<p>A loja ${shop_id.value} não obteve vendas esse período.</p>`;
       }
+    }
 
-      const groupBy = function (xs, key) {
-        return xs.reduce(function (rv, x) {
-          (rv[x[key]] = rv[x[key]] || []).push(x);
-          return rv;
-        }, {});
-      };
+    const groupBy = function (xs, key) {
+      return xs.reduce(function (rv, x) {
+        (rv[x[key]] = rv[x[key]] || []).push(x);
+        return rv;
+      }, {});
+    };
 
-      function bestSeller() {
-        no_data.innerHTML = "";
-        const test = groupBy(data, "name");
+    function bestSeller() {
+      no_data.innerHTML = "";
+      const test = groupBy(data, "name");
 
-        const test2 = Object.keys(test).map((item) => {
-          return {
-            name: test[item][0].name,
-            product_value: test[item].reduce(
-              (acc, curr) => acc + curr.product_value,
-              0
-            ),
-          };
-        });
+      const test2 = Object.keys(test).map((item) => {
+        return {
+          name: test[item][0].name,
+          product_value: test[item].reduce(
+            (acc, curr) => acc + curr.product_value,
+            0
+          ),
+        };
+      });
 
-        const best_seller = test2.reduce((prev, current) => {
-          return prev.product_value > current.product_value ? prev : current;
-        });
+      const best_seller = test2.reduce((prev, current) => {
+        return prev.product_value > current.product_value ? prev : current;
+      });
 
-        result.innerHTML = `O melhor vendedor foi <strong>${
-          best_seller.name
+      result.innerHTML = `O melhor vendedor foi <strong>${best_seller.name
         }</strong> com um total de <strong>${moneyFormat(
           best_seller.product_value
         )}</strong> em vendas.`;
-      }
+    }
 
-      function bestShop() {
-        const test = groupBy(data, "shop_id");
+    function bestShop() {
+      const test = groupBy(data, "shop_id");
 
-        const test2 = Object.keys(test).map((item) => {
-          return {
-            name: test[item][0].name,
-            product_value: test[item].reduce(
-              (acc, curr) => acc + curr.product_value,
-              0
-            ),
-          };
-        });
-      }
+      const test2 = Object.keys(test).map((item) => {
+        return {
+          name: test[item][0].name,
+          product_value: test[item].reduce(
+            (acc, curr) => acc + curr.product_value,
+            0
+          ),
+        };
+      });
+    }
 
-      function moneyFormat(value) {
-        return value.toLocaleString("pt-BR", {
-          style: "currency",
-          currency: "BRL",
-        });
-      }
-    </script>
-  </body>
+    function moneyFormat(value) {
+      return value.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      });
+    }
+  </script>
+</body>
+
 </html>
